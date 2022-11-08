@@ -14,18 +14,16 @@ function SearchBar({ onChangeHandler }) {
   }));
 
   return (
-    <>
-      <div className="search">
-        <SearchIconWrapper>
-          <SearchIcon color="action" />
-        </SearchIconWrapper>
-        <input
-          className="searchInput"
-          placeholder="Search…"
-          onChange={onChangeHandler}
-        />
-      </div>
-    </>
+    <div className="search">
+      <SearchIconWrapper>
+        <SearchIcon color="action" />
+      </SearchIconWrapper>
+      <input
+        className="searchInput"
+        placeholder="Search…"
+        onChange={onChangeHandler}
+      />
+    </div>
   );
 }
 

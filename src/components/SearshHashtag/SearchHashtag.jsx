@@ -3,6 +3,7 @@ import "./SearchHashtag.css";
 import SearchBar from "../SearchBar/SearchBar";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Form from "../Form/Form";
+import { getRecentTweets } from "../../apis/getTweets/getTweets";
 
 function SearchHashtag() {
   const [searchQuery, setSearchQuery] = useState();
@@ -12,7 +13,13 @@ function SearchHashtag() {
   };
 
   const getTweets = async () => {
-    console.log("djs");
+    console.log("api call1");
+    try {
+      let res = await getRecentTweets(searchQuery);
+      console.log("api call2", res);
+    } catch (error) {
+      console.log("api call3", error);
+    }
   };
 
   return (

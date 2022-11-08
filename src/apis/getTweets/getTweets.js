@@ -1,5 +1,8 @@
 import axios from "axios";
-import config from "../config/config";
 
-export const getRecentTweets = () =>
-  axios.get(`${process.env.REACT_APP_BASEURL}/tweets/search/recent`, config);
+console.log(process.env.REACT_APP_BEARER_TOKEN);
+
+export const getRecentTweets = (data) =>
+  axios.get(
+    `${process.env.REACT_APP_BASEURL}/search/tweets?query=${data}`
+  );
