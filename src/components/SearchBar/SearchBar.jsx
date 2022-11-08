@@ -53,7 +53,7 @@ function SearchBar() {
     <>
       <Search>
         <SearchIconWrapper>
-          <SearchIcon color="rgb(33 27 27 / 42%)" />
+          <SearchIcon color="action" />
         </SearchIconWrapper>
         <StyledInputBase
           placeholder="Search…"
