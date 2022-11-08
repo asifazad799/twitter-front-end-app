@@ -7,7 +7,7 @@
 }
 
 .searchHashtagSubContainer {
-  width: 40%;
+  width: 48%;
   border-left: solid rgb(156, 156, 156) 1.5px;
   border-right: solid rgb(156, 156, 156) 1.5px;
 }
@@ -15,7 +15,7 @@
 .serachBarContainer {
   width: 100%;
   border-bottom: solid rgb(156, 156, 156) 1.5px;
-  height: 70px;
+  height: 86px;
   display: flex;
   justify-content: center;
   align-items: center;
