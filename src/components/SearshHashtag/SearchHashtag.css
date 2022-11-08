@@ -1,0 +1,18 @@
+.searchHashtagContainer {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  gap: 0px;
+}
+
+.searchHashtagSubContainer {
+  width: 40%;
+  border-left: solid rgb(156, 156, 156) 1.5px;
+  border-right: solid rgb(156, 156, 156) 1.5px;
+}
+
+.serachBarContainer {
+  width: 100%;
+  border-bottom: solid rgb(156, 156, 156) 1.5px;
+}
