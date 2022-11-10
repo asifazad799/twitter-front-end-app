@@ -21,6 +21,7 @@ function SearchHashtag({ arr, setArr }) {
 
   const getTweets = async () => {
     try {
+      console.log(searchQuery);
       let res = await getRecentTweets(searchQuery);
       getRulesAPI();
     } catch (error) {

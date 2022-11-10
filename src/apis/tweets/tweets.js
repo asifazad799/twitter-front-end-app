@@ -4,5 +4,7 @@ console.log(process.env.REACT_APP_BEARER_TOKEN);
 
 export const getRecentTweets = (data) =>
   axios.get(
-    `${process.env.REACT_APP_BASEURL}/search/tweets?query=${data}`
+    `${process.env.REACT_APP_BASEURL}/search/tweets?query=${encodeURIComponent(
+      data
+    )}`
   );
