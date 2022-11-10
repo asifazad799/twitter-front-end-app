@@ -1,3 +1,4 @@
 # twitter-front-end-app
 
-- to run in local careate an env file(refer .example.env)
+- use .example.env to refer setup local evn
+- run npm start
