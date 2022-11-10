@@ -29,7 +29,7 @@ function SearchHashtag({ arr, setArr }) {
 
   useEffect(() => {
     socket.on("tweet", (data) => {
-      setArr((prev)=>[...prev, data]);
+      setArr((prev) => [data, ...prev]);
       console.log("data", data);
     });
   }, []);
