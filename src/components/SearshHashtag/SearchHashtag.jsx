@@ -8,6 +8,8 @@ import { getRules, deleteRule } from "../../apis/tweets/tweetRules";
 import TweetList from "../TweetList/TweetList";
 import socketIOClient from "socket.io-client";
 import RulesList from "../RulesList/RulesList";
+import { Stack } from "@mui/system";
+import Button from "@mui/material/Button";
 const ENDPOINT = "http://localhost:8080";
 
 function SearchHashtag({ arr, setArr }) {
@@ -69,7 +71,16 @@ function SearchHashtag({ arr, setArr }) {
         <div className="serachBarContainer">
           <TwitterIcon fontSize="large" color="primary" />
           <Form onSubmitForm={getTweets}>
-            <SearchBar onChangeHandler={onChangeHandler} />
+            <Stack flexDirection={"row"} gap={2}>
+              <SearchBar onChangeHandler={onChangeHandler} />
+              <Button
+                type={"submit"}
+                variant="contained"
+                className="submitButton"
+              >
+                search
+              </Button>
+            </Stack>
           </Form>
         </div>
         <RulesList
@@ -77,9 +88,9 @@ function SearchHashtag({ arr, setArr }) {
           setRules={setRules}
           handleDeleteRule={handleDeleteRule}
         />
-        <div>
-          <TweetList tweets={arr} />
-        </div>
+        {/* <div > */}
+        <TweetList tweets={arr} />
+        {/* </div> */}
       </div>
     </div>
   );

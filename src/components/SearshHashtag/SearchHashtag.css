@@ -21,3 +21,7 @@
   align-items: center;
   gap: 10px;
 }
+
+.submitButton {
+  border-radius: 30px !important;
+}

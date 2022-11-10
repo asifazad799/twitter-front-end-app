@@ -20,7 +20,7 @@ function SearchBar({ onChangeHandler }) {
       </SearchIconWrapper>
       <input
         className="searchInput"
-        placeholder="Search…"
+        placeholder="Search tweets..."
         onChange={onChangeHandler}
       />
     </div>
