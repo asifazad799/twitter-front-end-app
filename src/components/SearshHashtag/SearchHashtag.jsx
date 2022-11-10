@@ -21,7 +21,6 @@ function SearchHashtag({ arr, setArr }) {
 
   const getTweets = async () => {
     try {
-      console.log(searchQuery);
       let res = await getRecentTweets(searchQuery);
       getRulesAPI();
     } catch (error) {
@@ -44,7 +43,6 @@ function SearchHashtag({ arr, setArr }) {
   const getRulesAPI = async () => {
     try {
       let res = await getRules();
-      console.log("rules:", res);
       if (res?.data?.data.length > 0) {
         socket.emit("getRealTimeTweets", "world");
         setRules(res?.data?.data);
@@ -58,12 +56,10 @@ function SearchHashtag({ arr, setArr }) {
     getRulesAPI();
     socket.on("tweet", (data) => {
       setArr((prev) => [data, ...prev]);
-      console.log("data", data);
     });
 
     return () => {
       socket.disconnect();
-      console.log('disconnect')
     };
   }, []);
 

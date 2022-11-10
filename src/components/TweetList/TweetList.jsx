@@ -3,13 +3,13 @@ import "./tweetList.css";
 import TweetCard from "../tweetCard/TweetCard";
 
 function TweetList({ tweets }) {
-  console.log(tweets);
+  console.log(tweets, "tweet");
   return (
     <div className="tweetList">
       {tweets.map((val) => {
-        console.log(val?.includes?.users[0]?.profile_image_url, "pic");
         return (
           <TweetCard
+            key={val?.data?.id}
             profilePic={val?.includes?.users[0]?.profile_image_url}
             name={val?.includes?.users[0]?.name}
             userName={val?.includes?.users[0]?.username}

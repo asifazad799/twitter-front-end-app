@@ -7,7 +7,7 @@ function RulesList({ rules, handleDeleteRule }) {
   return (
     <div className="rulesList">
       {rules?.map((val) => (
-        <RulesChip data={val} handleDeleteRule={handleDeleteRule} />
+        <RulesChip key={val.id}  data={val} handleDeleteRule={handleDeleteRule} />
       ))}
     </div>
   );
