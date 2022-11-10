@@ -15,7 +15,7 @@
 .serachBarContainer {
   width: 100%;
   border-bottom: solid rgb(156, 156, 156) 1.5px;
-  height: 86px;
+  padding-block: 20px;
   display: flex;
   justify-content: center;
   align-items: center;

@@ -3,14 +3,17 @@ import "./SearchHashtag.css";
 import SearchBar from "../SearchBar/SearchBar";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import Form from "../Form/Form";
-import { getRecentTweets } from "../../apis/getTweets/getTweets";
+import { getRecentTweets } from "../../apis/tweets/tweets";
+import { getRules, deleteRule } from "../../apis/tweets/tweetRules";
 import TweetList from "../TweetList/TweetList";
 import socketIOClient from "socket.io-client";
+import RulesList from "../RulesList/RulesList";
 const ENDPOINT = "http://localhost:8080";
 
 function SearchHashtag({ arr, setArr }) {
   const [searchQuery, setSearchQuery] = useState();
-  const [results, setResults] = useState([]);
+  const [rules, setRules] = useState([]);
+  const socket = socketIOClient(ENDPOINT);
 
   const onChangeHandler = (e) => {
     setSearchQuery(e.target.value);
@@ -19,19 +22,48 @@ function SearchHashtag({ arr, setArr }) {
   const getTweets = async () => {
     try {
       let res = await getRecentTweets(searchQuery);
-      socket.emit("getRealTimeTweets", "world");
-      console.log(res);
+      getRulesAPI();
     } catch (error) {
       console.log("api call3", error);
     }
   };
-  const socket = socketIOClient(ENDPOINT);
+
+  const handleDeleteRule = async (id) => {
+    try {
+      await deleteRule(id);
+      if (rules.filter((val) => val.id !== id).length > 0) {
+        socket.emit("getRealTimeTweets", "world");
+      }
+      setRules(rules.filter((val) => val.id !== id));
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const getRulesAPI = async () => {
+    try {
+      let res = await getRules();
+      console.log("rules:", res);
+      if (res?.data?.data.length > 0) {
+        socket.emit("getRealTimeTweets", "world");
+        setRules(res?.data?.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
+    getRulesAPI();
     socket.on("tweet", (data) => {
       setArr((prev) => [data, ...prev]);
       console.log("data", data);
     });
+
+    return () => {
+      socket.disconnect();
+      console.log('disconnect')
+    };
   }, []);
 
   return (
@@ -43,6 +75,11 @@ function SearchHashtag({ arr, setArr }) {
             <SearchBar onChangeHandler={onChangeHandler} />
           </Form>
         </div>
+        <RulesList
+          rules={rules}
+          setRules={setRules}
+          handleDeleteRule={handleDeleteRule}
+        />
         <div>
           <TweetList tweets={arr} />
         </div>
