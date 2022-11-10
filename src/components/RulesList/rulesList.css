@@ -6,3 +6,15 @@
   padding: 10px;
   overflow: auto;
 }
+
+.rulesList::-webkit-scrollbar-thumb {
+  display: none;
+}
+
+.rulesList::-webkit-scrollbar {
+  display: none;
+}
+
+.rulesList::-webkit-scrollbar-track {
+  display: none;
+}
