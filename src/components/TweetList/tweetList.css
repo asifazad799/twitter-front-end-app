@@ -1,0 +1,16 @@
+.tweetList {
+  width: 100%;
+}
+
+.tweetCard {
+  width: 100%;
+  height: 100px;
+  background-color: brown;
+}
+
+.proPic {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: aquamarine;
+}
