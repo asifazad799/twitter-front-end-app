@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import "../TweetList/tweetList.css";
 
 function TweetCard({ profilePic, name, userName, text }) {
@@ -18,4 +18,4 @@ function TweetCard({ profilePic, name, userName, text }) {
   );
 }
 
-export default TweetCard;
+export default memo(TweetCard);
