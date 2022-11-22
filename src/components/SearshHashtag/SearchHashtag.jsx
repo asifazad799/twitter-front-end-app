@@ -6,16 +6,23 @@ import Form from "../Form/Form";
 import { getRecentTweets } from "../../apis/tweets/tweets";
 import { getRules, deleteRule } from "../../apis/tweets/tweetRules";
 import TweetList from "../TweetList/TweetList";
-import socketIOClient from "socket.io-client";
+import {io} from "socket.io-client";
 import RulesList from "../RulesList/RulesList";
 import { Stack } from "@mui/system";
 import Button from "@mui/material/Button";
 const ENDPOINT = "http://localhost:8080";
+const socket = io.connect(ENDPOINT);
 
 function SearchHashtag({ arr, setArr }) {
   const [searchQuery, setSearchQuery] = useState();
   const [rules, setRules] = useState([]);
-  const socket = socketIOClient(ENDPOINT);
+
+  useEffect(() => {
+    getRulesAPI();
+    socket.on("tweet", (data) => {
+      setArr((prev) => [data, ...prev]);
+    });
+  }, []);
 
   const onChangeHandler = (e) => {
     setSearchQuery(e.target.value);
@@ -53,17 +60,6 @@ function SearchHashtag({ arr, setArr }) {
       console.log(error);
     }
   };
-
-  useEffect(() => {
-    getRulesAPI();
-    socket.on("tweet", (data) => {
-      setArr((prev) => [data, ...prev]);
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
 
   return (
     <div className="searchHashtagContainer">
